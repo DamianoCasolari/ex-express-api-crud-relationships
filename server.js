@@ -27,4 +27,4 @@ app.use(notFound)
 app.use(errorsMiddleware)
 
 // Bind server with a PORT
-app.listen(3000, console.log("Create server correctly = http://localhost:3000"))
+app.listen(3000, console.log("Create server correctly = http://localhost:3000/posts"))
