@@ -7,4 +7,4 @@ const { body} = require("express-validator")
 router.post("/", categoryController.store)
 
 
-module.exports = { store}
+module.exports = router

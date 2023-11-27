@@ -6,7 +6,7 @@ const path = require("path")
 // import local files
 const postRouters = require("./routes/postRoutes")
 const tagRoutes = require("./routes/tagRoutes")
-const categoryController = require("./routes/categoryController")
+const categoryController = require("./routes/categoryRoutes")
 
 const errorsMiddleware = require("./middleware/errorsMiddleware")
 const notFound = require("./middleware/routeNotFound")
