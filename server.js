@@ -5,6 +5,9 @@ const path = require("path")
 
 // import local files
 const postRouters = require("./routes/postRoutes")
+const tagRoutes = require("./routes/tagRoutes")
+const categoryController = require("./routes/categoryController")
+
 const errorsMiddleware = require("./middleware/errorsMiddleware")
 const notFound = require("./middleware/routeNotFound")
 
@@ -19,6 +22,8 @@ app.use(express.json())
 
 // Crete routes GET
 app.use("/posts", postRouters)
+app.use("/tags", tagRoutes)
+app.use("/categories", categoryController)
 
 // Add page not found middleware
 app.use(notFound)

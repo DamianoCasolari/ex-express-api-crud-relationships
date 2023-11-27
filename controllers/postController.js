@@ -28,7 +28,11 @@ async function index(req, res, next) {
         const data = await prisma.post.findMany({
             skip: (currentPage - 1) * numberOfElementPerPage,
             take: numberOfElementPerPage,
-            where: queryFilter
+            where: queryFilter,
+            include : {
+                tags : true,
+                category: true
+            }
         });
         if (data.length == 0) {
             next(new Error("Nessun Risultao"))
@@ -47,6 +51,10 @@ async function show(req, res, next) {
         const data = await prisma.post.findFirst({
             where: {
                 slug: slug
+            },
+            include : {
+                tags : true,
+                category: true
             }
         })
 
