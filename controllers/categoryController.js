@@ -1,6 +1,6 @@
 const { PrismaClient } = require("@prisma/client")
 const prisma = new PrismaClient()
-const { validationResult } = require("express-validator")
+const { validationResult, matchedData } = require("express-validator")
 const customError = require("../utilities/customErrors")
 
 async function store(req, res, next) {
@@ -10,11 +10,14 @@ async function store(req, res, next) {
     if (!validation.isEmpty()) {
         next(new customError("Dati non conformi", 400))
     }
+
+    // with MATCHDATA I only take the category key validated before, the other properties sent in the body will be ignored
+    let reqBodyValidated = matchedData(req)
     try {
         const data = await prisma.category.create({
             data: {
-                name: req.body.name,
-                description: req.body.description
+                name: reqBodyValidated.name,
+                description: reqBodyValidated.description
             }
 
         })
@@ -26,7 +29,5 @@ async function store(req, res, next) {
     }
 
 }
-
-
 
 module.exports = { store }
