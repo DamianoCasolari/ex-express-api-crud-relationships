@@ -8,7 +8,8 @@ async function store(req, res, next) {
     const validation = validationResult(req)
 
     if (!validation.isEmpty()) {
-        next(new customError("Dati non conformi", 400))
+        const errorMessages = validation.array().map(error => error.msg);
+        next( new customError( errorMessages.join(', '), 400))
     }
 
     // with MATCHDATA I only take the category key validated before, the other properties sent in the body will be ignored
