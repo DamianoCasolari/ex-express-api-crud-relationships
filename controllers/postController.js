@@ -109,7 +109,7 @@ async function create(req, res, next) {
           // si aspetta come valore un array di oggetti con la chiave id
           // [{id: 1}, {id: 2}, ....]
           connect: reqBody.tags.map((tagsId) => ({
-            id: tagsId,
+            id: parseInt(tagsId),
           })),
         },
       },
